@@ -114,7 +114,7 @@ export default function InvoiceGenerator() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
+        <div className="min-h-screen bg-slate-100 py-12 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-5xl mx-auto mb-8 flex justify-between items-center">
                 <div>
                     <h1 className="text-3xl font-bold text-slate-900">Invoice Generator</h1>
