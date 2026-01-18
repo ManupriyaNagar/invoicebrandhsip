@@ -24,3 +24,38 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@layer utilities {
+  @media print {
+    body {
+      background: white !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .print\:hidden {
+      display: none !important;
+    }
+
+    .shadow-2xl,
+    .shadow-sm {
+      box-shadow: none !important;
+    }
+
+    .border {
+      border-color: #f1f5f9 !important;
+    }
+
+    input,
+    textarea {
+      border: none !important;
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    @page {
+      margin: 0;
+      size: auto;
+    }
+  }
+}
