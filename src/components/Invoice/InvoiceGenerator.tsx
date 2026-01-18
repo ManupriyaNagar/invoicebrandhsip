@@ -101,6 +101,18 @@ export default function InvoiceGenerator() {
     const subtotal = data.items.reduce((sum, item) => sum + item.amount, 0);
     const total = subtotal + (subtotal * (data.gst / 100)) + data.shipping;
 
+    const handleSend = () => {
+        const subject = encodeURIComponent(`Invoice ${data.invoiceNumber} from ${data.companyName}`);
+        const body = encodeURIComponent(
+            `Hello ${data.billToName},\n\nPlease find the invoice details below:\n\n` +
+            `Invoice #: ${data.invoiceNumber}\n` +
+            `Total Amount: ${formatCurrency(total)}\n` +
+            `Due Date: ${data.dueDate}\n\n` +
+            `Thank you for your business!`
+        );
+        window.location.href = `mailto:${data.companyEmail}?subject=${subject}&body=${body}`;
+    };
+
     return (
         <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
             <div className="max-w-5xl mx-auto mb-8 flex justify-between items-center">
@@ -116,7 +128,10 @@ export default function InvoiceGenerator() {
                         <Printer className="w-4 h-4" />
                         Print / Save PDF
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-sm">
+                    <button
+                        onClick={handleSend}
+                        className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors shadow-sm"
+                    >
                         <Mail className="w-4 h-4" />
                         Send Invoice
                     </button>
