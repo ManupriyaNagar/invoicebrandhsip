@@ -47,6 +47,7 @@ const initialData: InvoiceData = {
     customerMessage: "Hello!\n\nThank you for your purchase. Please return this invoice with payment.\n\nThanks!",
     gst: 0,
     shipping: 0,
+    discount: 0,
 };
 
 export default function InvoiceGenerator() {
@@ -99,7 +100,7 @@ export default function InvoiceGenerator() {
     };
 
     const subtotal = data.items.reduce((sum, item) => sum + item.amount, 0);
-    const total = subtotal + (subtotal * (data.gst / 100)) + data.shipping;
+    const total = subtotal + (subtotal * (data.gst / 100)) + data.shipping - data.discount;
 
     const handleSend = () => {
         const subject = encodeURIComponent(`Invoice ${data.invoiceNumber} from ${data.companyName}`);
@@ -342,16 +343,20 @@ export default function InvoiceGenerator() {
                                             <td className="py-4 px-2 align-top text-right">
                                                 <input
                                                     type="number"
-                                                    value={item.quantity}
+                                                    value={item.quantity === 0 ? "" : item.quantity}
                                                     onChange={(e) => updateItem(item.id, "quantity", parseFloat(e.target.value) || 0)}
+                                                    onFocus={(e) => e.target.select()}
+                                                    placeholder="0"
                                                     className="w-full text-right outline-none focus:bg-slate-50 rounded px-1"
                                                 />
                                             </td>
                                             <td className="py-4 px-2 align-top text-right">
                                                 <input
                                                     type="number"
-                                                    value={item.rate}
+                                                    value={item.rate === 0 ? "" : item.rate}
                                                     onChange={(e) => updateItem(item.id, "rate", parseFloat(e.target.value) || 0)}
+                                                    onFocus={(e) => e.target.select()}
+                                                    placeholder="0.00"
                                                     className="w-full text-right outline-none focus:bg-slate-50 rounded px-1"
                                                 />
                                             </td>
@@ -401,8 +406,10 @@ export default function InvoiceGenerator() {
                                     <span className="font-semibold text-slate-500">GST (%)</span>
                                     <input
                                         type="number"
-                                        value={data.gst}
+                                        value={data.gst === 0 ? "" : data.gst}
                                         onChange={(e) => updateData("gst", parseFloat(e.target.value) || 0)}
+                                        onFocus={(e) => e.target.select()}
+                                        placeholder="0"
                                         className="w-16 text-right outline-none bg-slate-50 rounded px-1 text-xs"
                                     />
                                 </div>
@@ -412,8 +419,21 @@ export default function InvoiceGenerator() {
                                 <span className="font-semibold text-slate-500">Shipping</span>
                                 <input
                                     type="number"
-                                    value={data.shipping}
+                                    value={data.shipping === 0 ? "" : data.shipping}
                                     onChange={(e) => updateData("shipping", parseFloat(e.target.value) || 0)}
+                                    onFocus={(e) => e.target.select()}
+                                    placeholder="0.00"
+                                    className="w-24 text-right outline-none bg-slate-50 rounded px-1 text-sm font-semibold"
+                                />
+                            </div>
+                            <div className="flex justify-between items-center text-sm">
+                                <span className="font-semibold text-slate-500">Discount</span>
+                                <input
+                                    type="number"
+                                    value={data.discount === 0 ? "" : data.discount}
+                                    onChange={(e) => updateData("discount", parseFloat(e.target.value) || 0)}
+                                    onFocus={(e) => e.target.select()}
+                                    placeholder="0.00"
                                     className="w-24 text-right outline-none bg-slate-50 rounded px-1 text-sm font-semibold"
                                 />
                             </div>

@@ -33,4 +33,5 @@ export interface InvoiceData {
     customerMessage: string;
     gst: number;
     shipping: number;
+    discount: number;
 }
