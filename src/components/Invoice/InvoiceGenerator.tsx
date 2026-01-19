@@ -18,27 +18,27 @@ import { InvoiceData, InvoiceItem } from "./types";
 import { motion, AnimatePresence } from "framer-motion";
 
 const initialData: InvoiceData = {
-    companyName: "Your Company Name",
-    companyAddress: "Street address",
-    companyCity: "City, State, Zip code",
-    companyPhone: "555-555-5555",
-    companyEmail: "company.name@companyname.com",
-    companyWebsite: "www.companyname.com",
-    billToName: "Client name",
-    billToAddress: "Street address",
-    billToCity: "City, State, Zip code",
-    shipToName: "Client name",
-    shipToAddress: "Street address",
-    shipToCity: "City, State, Zip code",
-    invoiceNumber: "12345",
-    invoiceDate: "mm/dd/yyyy",
-    terms: "Net 30",
-    dueDate: "mm/dd/yyyy",
+    companyName: "Brandship",
+    companyAddress: "Warehouse Tejpal Singh Market",
+    companyCity: "Badalpur, G.B Nagar-203207 Uttar Pradesh, India",
+    companyPhone: "9891140081",
+    companyEmail: "brandship00@gmail.com",
+    companyWebsite: "www.brandshipwater.com",
+    billToName: "",
+    billToAddress: "",
+    billToCity: "",
+    shipToName: "",
+    shipToAddress: "",
+    shipToCity: "",
+    invoiceNumber: "",
+    invoiceDate: "",
+    terms: "",
+    dueDate: "",
     items: [
         {
             id: "1",
-            name: "Product or service",
-            description: "Description of product or service",
+            name: "",
+            description: "",
             quantity: 0,
             rate: 0,
             amount: 0,
@@ -81,8 +81,8 @@ export default function InvoiceGenerator() {
     const addItem = () => {
         const newItem: InvoiceItem = {
             id: Math.random().toString(36).substr(2, 9),
-            name: "Product or service",
-            description: "Description of product or service",
+            name: "",
+            description: "",
             quantity: 0,
             rate: 0,
             amount: 0,
@@ -147,10 +147,8 @@ export default function InvoiceGenerator() {
                     {/* Header */}
                     <div className="flex justify-between items-start mb-12">
                         <div className="space-y-4">
-                            <div className="w-32 h-32 bg-slate-100 rounded-xl flex flex-col items-center justify-center border-2 border-dashed border-slate-300 relative group cursor-pointer hover:bg-slate-200 transition-colors">
-                                <ImageIcon className="w-8 h-8 text-slate-400" />
-                                <span className="text-[10px] uppercase font-bold text-slate-500 mt-2 text-center px-2">Replace with LOGO</span>
-                                <input type="file" className="absolute inset-0 opacity-0 cursor-pointer" />
+                            <div className="w-42 h-42 rounded-xl flex flex-col items-center justify-center  relative group cursor-pointer transition-colors">
+                                <img src="/image.png" alt="" />
                             </div>
                             <div className="space-y-1">
                                 <input
@@ -220,16 +218,19 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.billToName}
                                     onChange={(e) => updateData("billToName", e.target.value)}
+                                    placeholder="Client name"
                                     className="font-semibold block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                                 <input
                                     value={data.billToAddress}
                                     onChange={(e) => updateData("billToAddress", e.target.value)}
+                                    placeholder="Street address"
                                     className="text-slate-600 block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                                 <input
                                     value={data.billToCity}
                                     onChange={(e) => updateData("billToCity", e.target.value)}
+                                    placeholder="City, State, Zip code"
                                     className="text-slate-600 block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                             </div>
@@ -240,16 +241,19 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.shipToName}
                                     onChange={(e) => updateData("shipToName", e.target.value)}
+                                    placeholder="Client name"
                                     className="font-semibold block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                                 <input
                                     value={data.shipToAddress}
                                     onChange={(e) => updateData("shipToAddress", e.target.value)}
+                                    placeholder="Street address"
                                     className="text-slate-600 block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                                 <input
                                     value={data.shipToCity}
                                     onChange={(e) => updateData("shipToCity", e.target.value)}
+                                    placeholder="City, State, Zip code"
                                     className="text-slate-600 block w-full outline-none bg-transparent focus:bg-white rounded px-1 -ml-1"
                                 />
                             </div>
@@ -261,6 +265,7 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.invoiceNumber}
                                     onChange={(e) => updateData("invoiceNumber", e.target.value)}
+                                    placeholder="12345"
                                     className="text-right outline-none bg-transparent focus:bg-white rounded px-1"
                                 />
                             </div>
@@ -269,6 +274,7 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.invoiceDate}
                                     onChange={(e) => updateData("invoiceDate", e.target.value)}
+                                    placeholder="mm/dd/yyyy"
                                     className="text-right outline-none bg-transparent focus:bg-white rounded px-1"
                                 />
                             </div>
@@ -277,6 +283,7 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.terms}
                                     onChange={(e) => updateData("terms", e.target.value)}
+                                    placeholder="Net 30"
                                     className="text-right outline-none bg-transparent focus:bg-white rounded px-1"
                                 />
                             </div>
@@ -285,6 +292,7 @@ export default function InvoiceGenerator() {
                                 <input
                                     value={data.dueDate}
                                     onChange={(e) => updateData("dueDate", e.target.value)}
+                                    placeholder="mm/dd/yyyy"
                                     className="text-right outline-none bg-transparent focus:bg-white rounded px-1 font-semibold text-indigo-600"
                                 />
                             </div>
@@ -318,6 +326,7 @@ export default function InvoiceGenerator() {
                                                 <input
                                                     value={item.name}
                                                     onChange={(e) => updateItem(item.id, "name", e.target.value)}
+                                                    placeholder="Product or service"
                                                     className="w-full font-semibold outline-none focus:bg-slate-50 rounded px-1 -ml-1"
                                                 />
                                             </td>
@@ -325,6 +334,7 @@ export default function InvoiceGenerator() {
                                                 <textarea
                                                     value={item.description}
                                                     onChange={(e) => updateItem(item.id, "description", e.target.value)}
+                                                    placeholder="Description of product or service"
                                                     className="w-full text-slate-500 text-sm outline-none focus:bg-slate-50 rounded px-1 -ml-1 resize-none"
                                                     rows={2}
                                                 />
